@@ -1,111 +1,131 @@
 {
-    "common": {
-        "name": "mqtt-discovery",
-        "version": "0.0.2",
-        "news": {
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "uk": "Початкова версія",
-                "zh-cn": "首次出版"
-            }
-        },
-        "titleLang": {
-            "en": "MQTT Discovery Publisher",
-            "de": "MQTT Discovery Publisher",
-            "ru": "MQTT Discovery Publisher",
-            "pt": "MQTT Discovery Publisher",
-            "nl": "MQTT Discovery Publisher",
-            "fr": "Éditeur MQTT Discovery",
-            "it": "MQTT Discovery Publisher",
-            "es": "Editor de descubrimiento MQTT",
-            "pl": "MQTT Discovery Publisher",
-            "uk": "Видавець MQTT Discovery",
-            "zh-cn": "MQTT Discover Publisher"
-        },
-        "desc": {
-            "en": "Adapter, der MQTT Discovery Nachrichten für Home Assistant generiert",
-            "de": "Adapter, Der MQTT Discovery Nachricht für Heimatassistent Generierert",
-            "ru": "Адаптер, Der MQTT Discovery Nachrichten für Home Assistant Generiert",
-            "pt": "Adaptador, Der MQTT Discovery Nachrichten für Assistente de casa Generiert",
-            "nl": "Adapter, Der Mqtt Discovery Nachrichten Für Home Assistant Generiert",
-            "fr": "Adaptateur, der MQTT Discovery Nachrichten für Home Assistant Geriet",
-            "it": "Adattatore, der Mqtt Discovery Nachrichten für Assistente casa Generiert",
-            "es": "Adaptador, der Mqtt Discovery Nachrichten Für Home Assistant Generiert",
-            "pl": "Adapter, der MQTT Discovery Nachrichten Für Home Assistant Generiert",
-            "uk": "Адаптер, Der MQTT Discovery Nachrichten Für Home Assistant Generiert",
-            "zh-cn": "适配器，der mqtt DiscoveryNachrichtenfür家居助理属性"
-        },
-        "authors": ["Ferry Israel <israel@fi-lan.net>"],
-        "keywords": ["iobroker", "mqtt", "homeassistant", "discovery"],
-        "licenseInformation": {
-            "type": "free",
-            "license": "MIT"
-        },
-        "platform": "Javascript/Node.js",
-        "icon": "mqtt-discovery.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/f-israel/ioBroker.mqtt-discovery/master/admin/mqtt-discovery.png",
-        "readme": "https://github.com/f-israel/ioBroker.mqtt-discovery/blob/master/README.md",
-        "loglevel": "info",
-        "tier": 3,
-        "mode": "daemon",
-        "type": "protocols",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "poll",
-        "adminUI": {
-            "config": "json"
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=6.0.11"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": "7.4.19"
-            }
-        ]
+  "common": {
+    "name": "mqtt-discovery",
+    "version": "0.0.3-alpha.0",
+    "news": {
+      "0.0.3-alpha.0": {
+        "en": "More things for automated deploy",
+        "de": "Mehr zum automatisierten Einsatz",
+        "ru": "Больше вещей для автоматического развертывания",
+        "pt": "Mais coisas para implantação automatizada",
+        "nl": "Meer dingen voor geautomatiseerde implementatie",
+        "fr": "Plus de choses pour le déploiement automatisé",
+        "it": "Altre cose per l'implementazione automatizzata",
+        "es": "Más cosas para el despliegue automatizado",
+        "pl": "Więcej rzeczy do zautomatyzowanego wdrożenia",
+        "uk": "Детальніше про автоматизоване розгортання",
+        "zh-cn": "更多自动部署的东西"
+      },
+      "0.0.1": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "uk": "Початкова версія",
+        "zh-cn": "首次出版"
+      }
     },
-    "native": {
-        "mqttProtocol": "mqtt",
-        "mqttHost": "localhost",
-        "mqttPort": 1883,
-        "mqttUsername": "",
-        "mqttPassword": "",
-        "mqttClientId": "ioBroker-mqtt-discovery",
-        "mqttInstance": ""
+    "titleLang": {
+      "en": "MQTT Discovery Publisher",
+      "de": "MQTT Discovery Publisher",
+      "ru": "MQTT Discovery Publisher",
+      "pt": "MQTT Discovery Publisher",
+      "nl": "MQTT Discovery Publisher",
+      "fr": "Éditeur MQTT Discovery",
+      "it": "MQTT Discovery Publisher",
+      "es": "Editor de descubrimiento MQTT",
+      "pl": "MQTT Discovery Publisher",
+      "uk": "Видавець MQTT Discovery",
+      "zh-cn": "MQTT Discover Publisher"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Device or service connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
+    "desc": {
+      "en": "Adapter, der MQTT Discovery Nachrichten für Home Assistant generiert",
+      "de": "Adapter, Der MQTT Discovery Nachricht für Heimatassistent Generierert",
+      "ru": "Адаптер, Der MQTT Discovery Nachrichten für Home Assistant Generiert",
+      "pt": "Adaptador, Der MQTT Discovery Nachrichten für Assistente de casa Generiert",
+      "nl": "Adapter, Der Mqtt Discovery Nachrichten Für Home Assistant Generiert",
+      "fr": "Adaptateur, der MQTT Discovery Nachrichten für Home Assistant Geriet",
+      "it": "Adattatore, der Mqtt Discovery Nachrichten für Assistente casa Generiert",
+      "es": "Adaptador, der Mqtt Discovery Nachrichten Für Home Assistant Generiert",
+      "pl": "Adapter, der MQTT Discovery Nachrichten Für Home Assistant Generiert",
+      "uk": "Адаптер, Der MQTT Discovery Nachrichten Für Home Assistant Generiert",
+      "zh-cn": "适配器，der mqtt DiscoveryNachrichtenfür家居助理属性"
+    },
+    "authors": [
+      "Ferry Israel <israel@fi-lan.net>"
+    ],
+    "keywords": [
+      "iobroker",
+      "mqtt",
+      "homeassistant",
+      "discovery"
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "icon": "mqtt-discovery.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/f-israel/ioBroker.mqtt-discovery/master/admin/mqtt-discovery.png",
+    "readme": "https://github.com/f-israel/ioBroker.mqtt-discovery/blob/master/README.md",
+    "loglevel": "info",
+    "tier": 3,
+    "mode": "daemon",
+    "type": "protocols",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.11"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": "7.4.19"
+      }
     ]
+  },
+  "native": {
+    "mqttProtocol": "mqtt",
+    "mqttHost": "localhost",
+    "mqttPort": 1883,
+    "mqttUsername": "",
+    "mqttPassword": "",
+    "mqttClientId": "ioBroker-mqtt-discovery",
+    "mqttInstance": ""
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }

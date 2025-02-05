@@ -121,8 +121,7 @@ For later updates, the above procedure is not necessary. Just do the following:
 1. Execute `iobroker upload mqtt-discovery` on the ioBroker host
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 0.0.3-alpha.0 (2025-02-05)
 - (FI) More things for automated deploy
 
 ### 0.0.2
@@ -132,7 +131,6 @@ For later updates, the above procedure is not necessary. Just do the following:
 ### 0.0.1
 
 - (FI) initial release
-
 
 ## License
 
