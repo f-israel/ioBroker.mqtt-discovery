@@ -1,45 +1,49 @@
 {
+  "i18n": true,
+  "type": "panel",
+  "items": {
     "mqttProtocol": {
-        "type": "text",
-        "label": "MQTT Protokoll",
-        "default": "mqtt",
-        "desc": "Protokoll, z. B. mqtt oder mqtts"
+      "type": "text",
+      "label": "MQTT Protokoll",
+      "default": "mqtt",
+      "help": "Protokoll, z. B. mqtt oder mqtts"
     },
     "mqttHost": {
-        "type": "text",
-        "label": "MQTT Host",
-        "default": "localhost",
-        "desc": "Hostname oder IP-Adresse des MQTT Brokers"
+      "type": "text",
+      "label": "MQTT Host",
+      "default": "localhost",
+      "help": "Hostname oder IP-Adresse des MQTT Brokers"
     },
     "mqttPort": {
-        "type": "number",
-        "label": "MQTT Port",
-        "default": 1883,
-        "desc": "Port des MQTT Brokers"
+      "type": "number",
+      "label": "MQTT Port",
+      "default": 1883,
+      "help": "Port des MQTT Brokers"
     },
     "mqttUsername": {
-        "type": "text",
-        "label": "MQTT Benutzer",
-        "default": "",
-        "desc": "Benutzername für den MQTT Broker (optional)"
+      "type": "text",
+      "label": "MQTT Benutzer",
+      "default": "",
+      "help": "Benutzername für den MQTT Broker (optional)"
     },
     "mqttPassword": {
-        "type": "password",
-        "label": "MQTT Passwort",
-        "default": "",
-        "desc": "Passwort für den MQTT Broker (optional)"
+      "type": "password",
+      "label": "MQTT Passwort",
+      "default": "",
+      "help": "Passwort für den MQTT Broker (optional)"
     },
     "mqttClientId": {
-        "type": "text",
-        "label": "MQTT Client ID",
-        "default": "ioBroker-mqtt-discovery",
-        "desc": "Client-ID für die Verbindung zum MQTT Broker"
+      "type": "text",
+      "label": "MQTT Client ID",
+      "default": "ioBroker-mqtt-discovery",
+      "help": "Client-ID für die Verbindung zum MQTT Broker"
     },
     "mqttInstance": {
-        "type": "instance",
-        "adapter": "mqtt",
-        "label": "Verwende vorhandene MQTT-Instanz",
-        "desc": "Wähle eine vorhandene MQTT-Instanz aus, falls du nicht direkt verbinden möchtest",
-        "default": ""
+      "type": "instance",
+      "adapter": "mqtt",
+      "label": "Verwende vorhandene MQTT-Instanz",
+      "help": "Wähle eine vorhandene MQTT-Instanz aus, falls du nicht direkt verbinden möchtest",
+      "default": ""
     }
+  }
 }
