@@ -122,9 +122,17 @@ For later updates, the above procedure is not necessary. Just do the following:
 
 ## Changelog
 
+### **WORK IN PROGRESS**
+- (FI) More things for automated deploy
+
+### 0.0.2
+
+- (FI) Just some thing for github actions
+
 ### 0.0.1
 
-- (Ferry Israel) initial release
+- (FI) initial release
+
 
 ## License
 
