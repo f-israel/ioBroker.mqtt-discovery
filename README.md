@@ -14,6 +14,13 @@
 
 Adapter, der MQTT Discovery Nachrichten für Home Assistant generiert
 
+
+[!WARNING] 
+This is my very first ioBroker adapter!  
+This project is in active development—imagine a mad scientist’s lab where experiments are a daily routine. Expect quirky behavior, unexpected bugs, and plenty of caffeine-fueled code as I learn the ropes. Every bug report and suggestion earns a virtual high-five!
+
+Happy hacking and enjoy the chaos!
+
 ## Developer manual
 This section is intended for the developer. It can be deleted later.
 
