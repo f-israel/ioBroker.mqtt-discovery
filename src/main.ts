@@ -19,33 +19,32 @@ class MqttDiscovery extends utils.Adapter {
     public constructor(options: Partial<utils.AdapterOptions> = {}) {
         super({
             ...options,
-            name: 'mqtt-discovery',
+            name: "mqtt-discovery",
         });
         // Registriere Event-Handler
-        this.on('ready', this.onReady.bind(this));
-        this.on('stateChange', this.onStateChange.bind(this));
-        this.on('unload', this.onUnload.bind(this));
+        this.on("ready", this.onReady.bind(this));
+        this.on("stateChange", this.onStateChange.bind(this));
+        this.on("unload", this.onUnload.bind(this));
     }
-
 
     /**
      * Wird aufgerufen, wenn der Adapter bereit ist.
      */
     private onReady(): void {
         // Prüfe, ob eine bestehende MQTT-Instanz ausgewählt wurde
-        if (this.config.mqttInstance && this.config.mqttInstance !== '') {
+        if (this.config.mqttInstance && this.config.mqttInstance !== "") {
             this.log.info(`Verwende vorhandene MQTT-Instanz: ${this.config.mqttInstance}`);
             this.useMqttInstance = true;
             // Bei Verwendung einer Instanz erfolgt das Publish später über sendTo
             this.checkDiscoveryWrite();
         } else {
             // Direktverbindung: Erstelle den Verbindungs-URL aus Protokoll, Host und Port
-            const protocol: string = this.config.mqttProtocol || 'mqtt';
-            const host: string = this.config.mqttHost || 'localhost';
+            const protocol: string = this.config.mqttProtocol || "mqtt";
+            const host: string = this.config.mqttHost || "localhost";
             const port: number = this.config.mqttPort || 1883;
-            const username: string = this.config.mqttUsername || '';
-            const password: string = this.config.mqttPassword || '';
-            const clientId: string = this.config.mqttClientId || 'ioBroker-mqtt-discovery';
+            const username: string = this.config.mqttUsername || "";
+            const password: string = this.config.mqttPassword || "";
+            const clientId: string = this.config.mqttClientId || "ioBroker-mqtt-discovery";
             const url = `${protocol}://${host}:${port}`;
 
             this.log.info(`Verbinde direkt zu MQTT-Broker unter ${url} als ${clientId}`);
@@ -54,12 +53,12 @@ class MqttDiscovery extends utils.Adapter {
             if (password) options.password = password;
 
             this.client = mqtt.connect(url, options);
-            this.client.on('connect', () => {
-                this.log.info('Direkte MQTT-Verbindung hergestellt.');
+            this.client.on("connect", () => {
+                this.log.info("Direkte MQTT-Verbindung hergestellt.");
                 this.publishDiscovery();
                 this.checkDiscoveryWrite();
             });
-            this.client.on('error', (err: Error) => {
+            this.client.on("error", (err: Error) => {
                 this.log.error(`MQTT-Fehler: ${err.message}`);
             });
             // Hier könntest du auch weitere Event-Handler hinzufügen (z. B. für "message")
@@ -70,18 +69,18 @@ class MqttDiscovery extends utils.Adapter {
      * Führt einen kurzen Test-Publish aus, um zu prüfen, ob das Schreiben möglich ist.
      */
     private checkDiscoveryWrite(): void {
-        const testTopic = 'ioBroker/mqtt-discovery/test';
-        const testMessage = 'Test';
+        const testTopic = "ioBroker/mqtt-discovery/test";
+        const testMessage = "Test";
         if (this.useMqttInstance && this.config.mqttInstance) {
             this.sendTo(
                 this.config.mqttInstance,
-                'publish',
+                "publish",
                 { topic: testTopic, message: testMessage, retain: false },
                 (response: any) => {
                     if (response && response.error) {
                         this.log.error(`Test-Publish via MQTT-Instanz fehlgeschlagen: ${response.error}`);
                     } else {
-                        this.log.info('Test-Publish via MQTT-Instanz erfolgreich.');
+                        this.log.info("Test-Publish via MQTT-Instanz erfolgreich.");
                     }
                 },
             );
@@ -91,7 +90,7 @@ class MqttDiscovery extends utils.Adapter {
                     if (err) {
                         this.log.error(`Test-Publish fehlgeschlagen: ${err.message}`);
                     } else {
-                        this.log.info('Test-Publish direkt erfolgreich.');
+                        this.log.info("Test-Publish direkt erfolgreich.");
                     }
                 });
             }
@@ -103,13 +102,13 @@ class MqttDiscovery extends utils.Adapter {
      */
     private async publishDiscovery(): Promise<void> {
         if (!this.client) {
-            this.log.error('MQTT-Client ist nicht initialisiert.');
+            this.log.error("MQTT-Client ist nicht initialisiert.");
             return;
         }
 
-        const allStates = await findStatesMarkedWithEnum(this,'homeassistant_enabled');
+        const allStates = await findStatesMarkedWithEnum(this, "homeassistant_enabled");
         if (allStates.length == 0) {
-            this.log.warn('No object with enum.function.homeassistant_enabled found');
+            this.log.warn("No object with enum.function.homeassistant_enabled found");
             return;
         }
 
@@ -159,7 +158,7 @@ class MqttDiscovery extends utils.Adapter {
             if (this.client) {
                 // Beispielhaft: Konvertiere die State-ID in ein MQTT-Topic
                 // Ersetzt Punkte durch Slashes: "mqtt-discovery.0.my_device" -> "iobroker/mqtt-discovery/0/my_device/state"
-                const topic = `iobroker/${id.replace(/\./g, '/')}/state`;
+                const topic = `iobroker/${id.replace(/\./g, "/")}/state`;
                 this.client.publish(topic, String(state.val), { retain: true }, (err?: Error) => {
                     if (err) {
                         this.log.error(`Fehler beim Senden des State ${id} an MQTT: ${err.message}`);
@@ -182,7 +181,7 @@ class MqttDiscovery extends utils.Adapter {
                 this.client.end();
             }
             callback();
-        } catch (e) {
+        } catch {
             callback();
         }
     }

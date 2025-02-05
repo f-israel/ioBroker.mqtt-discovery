@@ -4,24 +4,24 @@ export async function findStatesMarkedWithEnum(adapter: ioBroker.Adapter, enumId
         if (!obj) return [];
 
         switch (obj.type) {
-            case 'state':
+            case "state":
                 return [obj._id];
-            case 'channel':
-            case 'device':
-            case 'folder':
-            case 'meta':
-            case 'adapter':
-            case 'instance':
-            case 'group':
+            case "channel":
+            case "device":
+            case "folder":
+            case "meta":
+            case "adapter":
+            case "instance":
+            case "group":
                 break;
-            case 'enum':
-            case 'host':
-            case 'user':
-            case 'script':
-            case 'chart':
-            case 'schedule':
-            case 'config':
-            case 'design':
+            case "enum":
+            case "host":
+            case "user":
+            case "script":
+            case "chart":
+            case "schedule":
+            case "config":
+            case "design":
                 adapter.log.warn(`Found object of type '${obj.type}' which is not supported`);
                 return [];
         }

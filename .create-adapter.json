@@ -20,7 +20,7 @@
     "releaseScript": "no",
     "devServer": "no",
     "indentation": "Space (4)",
-    "quotes": "single",
+    "quotes": "double",
     "authorName": "Ferry Israel",
     "authorGithub": "fisrael",
     "authorEmail": "israel@fi-lan.net",

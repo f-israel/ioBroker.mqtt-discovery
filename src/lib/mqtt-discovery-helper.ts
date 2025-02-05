@@ -16,21 +16,21 @@ export interface DiscoveryMessage {
  */
 export function mapStateToHAComponent(state: ioBroker.Object): string {
     const type = state.common?.type;
-    const role = (state.common?.role || '').toLowerCase();
+    const role = (state.common?.role || "").toLowerCase();
 
-    if (type === 'boolean') {
+    if (type === "boolean") {
         // Wenn in der Rolle beispielsweise "sensor" enthalten ist, könnte man auch
         // einen "binary_sensor" verwenden – hier als Beispiel:
-        if (role.includes('sensor')) {
-            return 'binary_sensor';
+        if (role.includes("sensor")) {
+            return "binary_sensor";
         }
         // Standard: Bei Boolean als Schalter
-        return 'switch';
-    } else if (type === 'number' || type === 'string') {
-        return 'sensor';
+        return "switch";
+    } else if (type === "number" || type === "string") {
+        return "sensor";
     }
     // Fallback: sensor
-    return 'sensor';
+    return "sensor";
 }
 
 /**
@@ -55,7 +55,7 @@ export function generateDiscoveryMessage(stateId: string, state: ioBroker.Object
 
     // Generiere eine eindeutige Object-ID, indem wir Punkte durch Unterstriche ersetzen.
     // Optional könntest du hier auch noch den Adapter-Namen entfernen, wenn du das möchtest.
-    const objectId = stateId.replace(/\./g, '_');
+    const objectId = stateId.replace(/\./g, "_");
 
     // Das Discovery-Topic gemäß HA-Schema:
     // Beispiel: "homeassistant/switch/mqtt-discovery_0_my_device/config"
@@ -64,7 +64,7 @@ export function generateDiscoveryMessage(stateId: string, state: ioBroker.Object
     // Erzeuge den Basis-MQTT-Topic, in dem die State-Informationen abgelegt werden:
     // Hierbei werden Punkte in der State-ID durch Slashes ersetzt.
     // Beispiel: "iobroker/mqtt-discovery/0/my_device"
-    const baseTopic = `iobroker/${stateId.replace(/\./g, '/')}`;
+    const baseTopic = `iobroker/${stateId.replace(/\./g, "/")}`;
 
     // Grundlegender Payload, der in jedem Fall gesetzt wird:
     const payload: any = {
@@ -74,30 +74,30 @@ export function generateDiscoveryMessage(stateId: string, state: ioBroker.Object
     };
 
     // Abhängig von der HA-Komponente fügen wir weitere Felder hinzu:
-    if (haComponent === 'switch') {
+    if (haComponent === "switch") {
         // Für Schalter: Definiere zusätzlich den command_topic und die Payloads für ON/OFF.
         payload.command_topic = `${baseTopic}/set`;
-        payload.payload_on = 'ON';
-        payload.payload_off = 'OFF';
-    } else if (haComponent === 'binary_sensor') {
+        payload.payload_on = "ON";
+        payload.payload_off = "OFF";
+    } else if (haComponent === "binary_sensor") {
         // Binary Sensoren sind in der Regel read-only.
         // Hier definieren wir aber dennoch, welche Payloads als ON/OFF gelten.
-        payload.payload_on = 'ON';
-        payload.payload_off = 'OFF';
-    } else if (haComponent === 'sensor') {
+        payload.payload_on = "ON";
+        payload.payload_off = "OFF";
+    } else if (haComponent === "sensor") {
         // Für Sensoren können weitere Felder wie die Einheit gesetzt werden,
         // sofern diese im State hinterlegt sind.
         if (state.common?.unit) {
             payload.unit_of_measurement = state.common.unit;
         }
         // Optional: Setze einen device_class, wenn die Rolle bestimmte Hinweise enthält.
-        const roleLower = (state.common?.role || '').toLowerCase();
-        if (roleLower.includes('temp')) {
-            payload.device_class = 'temperature';
-        } else if (roleLower.includes('humidity')) {
-            payload.device_class = 'humidity';
-        } else if (roleLower.includes('pressure')) {
-            payload.device_class = 'pressure';
+        const roleLower = (state.common?.role || "").toLowerCase();
+        if (roleLower.includes("temp")) {
+            payload.device_class = "temperature";
+        } else if (roleLower.includes("humidity")) {
+            payload.device_class = "humidity";
+        } else if (roleLower.includes("pressure")) {
+            payload.device_class = "pressure";
         }
     }
 

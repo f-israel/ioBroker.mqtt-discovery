@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "mqtt-discovery",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "news": {
             "0.0.1": {
                 "en": "initial release",
@@ -52,8 +52,8 @@
         "platform": "Javascript/Node.js",
         "icon": "mqtt-discovery.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/fisrael/ioBroker.mqtt-discovery/main/admin/mqtt-discovery.png",
-        "readme": "https://github.com/fisrael/ioBroker.mqtt-discovery/blob/main/README.md",
+        "extIcon": "https://raw.githubusercontent.com/f-israel/ioBroker.mqtt-discovery/master/admin/mqtt-discovery.png",
+        "readme": "https://github.com/f-israel/ioBroker.mqtt-discovery/blob/master/README.md",
         "loglevel": "info",
         "tier": 3,
         "mode": "daemon",
