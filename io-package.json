@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "mqtt-discovery",
-    "version": "0.0.3-alpha.2",
+    "version": "0.0.3-alpha.3",
     "news": {
+      "0.0.3-alpha.3": {
+        "en": "version push for npm package",
+        "de": "version push für npm paket",
+        "ru": "версия push для npm пакета",
+        "pt": "versão push para pacote npm",
+        "nl": "versie push voor npm pakket",
+        "fr": "version push pour paquet npm",
+        "it": "versione push per npm pacchetto",
+        "es": "versión push para npm paquete",
+        "pl": "wersja push dla pakietu npm",
+        "uk": "версія поштовх для пакета npm",
+        "zh-cn": "npm 软件包的版本推"
+      },
       "0.0.3-alpha.2": {
         "en": "Removed test logic (will get implemented later)",
         "de": "Entfernte Testlogik (wird später implementiert)",
