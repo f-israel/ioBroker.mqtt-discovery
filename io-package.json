@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "mqtt-discovery",
-    "version": "0.0.3-alpha.1",
+    "version": "0.0.3-alpha.2",
     "news": {
+      "0.0.3-alpha.2": {
+        "en": "Removed test logic (will get implemented later)",
+        "de": "Entfernte Testlogik (wird später implementiert)",
+        "ru": "Удаленная логика тестирования (будет реализован позднее)",
+        "pt": "Lógica de teste removida (será implementada mais tarde)",
+        "nl": "Verwijderde testlogica (wordt later geïmplementeerd)",
+        "fr": "Logique de test supprimée (se fera implémenter plus tard)",
+        "it": "Logica di prova eliminata (sarà implementata in seguito)",
+        "es": "Lógica de prueba eliminada (se implementará más tarde)",
+        "pl": "Usunięta logika testu (zostanie wdrożona później)",
+        "uk": "Видалити логіку тестів (не впроваджена пізніше)",
+        "zh-cn": "删除测试逻辑( 稍后执行)"
+      },
       "0.0.3-alpha.1": {
         "en": "Implemented rough logic",
         "de": "Ergänzte grobe Logik",

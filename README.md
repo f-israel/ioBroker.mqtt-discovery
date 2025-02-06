@@ -21,8 +21,9 @@ Adapter, der MQTT Discovery Nachrichten für Home Assistant generiert
 > Happy hacking and enjoy the chaos!
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 0.0.3-alpha.2 (2025-02-06)
 - (FI) Removed test logic (will get implemented later)
+
 ### 0.0.3-alpha.1 (2025-02-06)
 - (FI) Implemented rough logic
 
