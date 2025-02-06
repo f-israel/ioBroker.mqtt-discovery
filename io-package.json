@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "mqtt-discovery",
-    "version": "0.0.3-alpha.0",
+    "version": "0.0.3-alpha.1",
     "news": {
+      "0.0.3-alpha.1": {
+        "en": "Implemented rough logic",
+        "de": "Ergänzte grobe Logik",
+        "ru": "Реализованная грубая логика",
+        "pt": "Implementada lógica áspera",
+        "nl": "Geïmplementeerde ruwe logica",
+        "fr": "Logique brute appliquée",
+        "it": "Logica grezza implementata",
+        "es": "Aplicada lógica áspera",
+        "pl": "Wdrożenie szorstkiej logiki",
+        "uk": "Реалізація грубої логіки",
+        "zh-cn": "粗略逻辑"
+      },
       "0.0.3-alpha.0": {
         "en": "More things for automated deploy",
         "de": "Mehr zum automatisierten Einsatz",

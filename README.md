@@ -121,7 +121,7 @@ For later updates, the above procedure is not necessary. Just do the following:
 1. Execute `iobroker upload mqtt-discovery` on the ioBroker host
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 0.0.3-alpha.1 (2025-02-06)
 - (FI) Implemented rough logic
 
 ### 0.0.3-alpha.0 (2025-02-05)
