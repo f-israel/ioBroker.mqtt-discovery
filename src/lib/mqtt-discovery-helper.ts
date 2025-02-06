@@ -75,7 +75,7 @@ export function generateDiscoveryMessage(
     // Beispiel: "iobroker/mqtt-discovery/0/my_device"
     let stateTopicConfig = adapter.config.stateTopic;
     if (stateTopicConfig && !stateTopicConfig.endsWith("/")) {
-        stateTopicConfig = `${discoveryTopicConfig}/`;
+        stateTopicConfig = `${stateTopicConfig}/`;
     }
     const baseTopic = `${stateTopicConfig}${stateId.replace(/\./g, "/")}`;
 

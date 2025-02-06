@@ -47,7 +47,7 @@ function generateDiscoveryMessage(stateId, state, adapter) {
   const discoveryTopic = `${discoveryTopicConfig}${haComponent}/${objectId}/config`;
   let stateTopicConfig = adapter.config.stateTopic;
   if (stateTopicConfig && !stateTopicConfig.endsWith("/")) {
-    stateTopicConfig = `${discoveryTopicConfig}/`;
+    stateTopicConfig = `${stateTopicConfig}/`;
   }
   const baseTopic = `${stateTopicConfig}${stateId.replace(/\./g, "/")}`;
   let payload = {

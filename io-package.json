@@ -144,7 +144,7 @@
     "mqttClientId": "ioBroker-mqtt-discovery",
     "mqttInstance": "",
     "discoveryTopic": "homeassistent",
-    "stateTopic": "iobroker"
+    "stateTopic": ""
   },
   "objects": [],
   "instanceObjects": [
