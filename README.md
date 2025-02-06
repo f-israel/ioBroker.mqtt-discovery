@@ -53,9 +53,9 @@ To enable Home Assistant Discovery, follow these steps:
     - Alternatively, delete all discovery config states before restarting the adapter.
 
 ## Changelog
-### ***WORK IN PROGRESS***
+### **WORK IN PROGRESS**
 - first version with values in HA
-- added simple documentation
+- added simple documentation 
 
 ### 0.0.3-alpha.3 (2025-02-06)
 - version push for npm package
