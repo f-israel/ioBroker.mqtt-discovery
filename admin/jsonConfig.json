@@ -51,6 +51,18 @@
       "label": "MQTT Client ID",
       "default": "ioBroker-mqtt-discovery",
       "help": "Client-ID für die Verbindung zum MQTT Broker"
+    },
+    "discoveryTopic": {
+      "type": "text",
+      "label": "Discovery-Topic",
+      "default": "homeassistant",
+      "help": "Topic-Prefix in dem die Discovery-Messages published werden (muss im HA entsprechend eingestellt werden)"
+    },
+    "stateTopic": {
+      "type": "text",
+      "label": "State-Topic",
+      "default": "iobroker",
+      "help": "Topic-Prefix in dem die States liegen (entspricht mqtt.* -> Einstellungen -> Prefix für alle Topics)"
     }
   }
 }

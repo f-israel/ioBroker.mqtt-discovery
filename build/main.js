@@ -195,14 +195,14 @@ class MqttDiscovery extends utils.Adapter {
       if (!state) {
         continue;
       }
-      const { haComponent, message: discovery } = (0, import_mqtt_discovery_helper.generateDiscoveryMessage)(stateId, state);
+      const { haComponent, message: discovery } = (0, import_mqtt_discovery_helper.generateDiscoveryMessage)(stateId, state, this);
       const success = await this.mqttPublish(discovery.topic, JSON.stringify(discovery.payload), {
         retain: true
       });
       if (!success) {
         this.log.error(`Fehler beim Senden der Discovery-Nachricht`);
       } else {
-        this.log.debug(`Discovery-Nachricht f\xFCr "${stateId}" gesendet.`);
+        this.log.debug(`Discovery-Nachricht f\xFCr "${stateId}" als "${discovery.topic}" gesendet.`);
         await this.incrementComponentCounterState(haComponent);
       }
     }

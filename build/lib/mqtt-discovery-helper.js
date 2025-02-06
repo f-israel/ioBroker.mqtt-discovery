@@ -36,12 +36,20 @@ function mapStateToHAComponent(state) {
   }
   return "sensor";
 }
-function generateDiscoveryMessage(stateId, state) {
+function generateDiscoveryMessage(stateId, state, adapter) {
   var _a, _b;
   const haComponent = mapStateToHAComponent(state);
   const objectId = stateId.replace(/\./g, "_");
-  const discoveryTopic = `homeassistant/${haComponent}/${objectId}/config`;
-  const baseTopic = `iobroker/${stateId.replace(/\./g, "/")}`;
+  let discoveryTopicConfig = adapter.config.discoveryTopic;
+  while (discoveryTopicConfig && discoveryTopicConfig.endsWith("/")) {
+    discoveryTopicConfig = discoveryTopicConfig.substring(0, discoveryTopicConfig.length - 1);
+  }
+  const discoveryTopic = `${discoveryTopicConfig}/${haComponent}/${objectId}/config`;
+  let stateTopicConfig = adapter.config.stateTopic;
+  while (stateTopicConfig && stateTopicConfig.endsWith("/")) {
+    stateTopicConfig = stateTopicConfig.substring(0, stateTopicConfig.length - 1);
+  }
+  const baseTopic = `${stateTopicConfig}/${stateId.replace(/\./g, "/")}`;
   let payload = {
     name: objectId,
     state_topic: `${baseTopic}/state`,

@@ -13,6 +13,9 @@ declare global {
             mqttProtocol: string;
             mqttClientId: string;
             mqttInstance: string;
+
+            discoveryTopic: string;
+            stateTopic: string;
         }
     }
 }

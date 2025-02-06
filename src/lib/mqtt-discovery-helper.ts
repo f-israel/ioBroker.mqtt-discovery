@@ -44,11 +44,13 @@ export function mapStateToHAComponent(state: ioBroker.Object): HomeassistantComp
  *
  * @param stateId Die ioBroker State-ID (z.B. "mqtt-discovery.0.my_device")
  * @param state Das zugehörige State-Objekt, das auch Informationen wie den Typ und die Rolle enthält.
+ * @param adapter
  * @returns Ein Objekt mit dem Discovery-Topic und dem Payload, der per MQTT versendet werden kann.
  */
 export function generateDiscoveryMessage(
     stateId: string,
     state: ioBroker.Object,
+    adapter: ioBroker.Adapter,
 ): {
     message: DiscoveryMessage;
     haComponent: HomeassistantComponent;
@@ -62,12 +64,20 @@ export function generateDiscoveryMessage(
 
     // Das Discovery-Topic gemäß HA-Schema:
     // Beispiel: "homeassistant/switch/mqtt-discovery_0_my_device/config"
-    const discoveryTopic = `homeassistant/${haComponent}/${objectId}/config`;
+    let discoveryTopicConfig = adapter.config.discoveryTopic;
+    while (discoveryTopicConfig && discoveryTopicConfig.endsWith("/")) {
+        discoveryTopicConfig = discoveryTopicConfig.substring(0, discoveryTopicConfig.length - 1);
+    }
+    const discoveryTopic = `${discoveryTopicConfig}/${haComponent}/${objectId}/config`;
 
     // Erzeuge den Basis-MQTT-Topic, in dem die State-Informationen abgelegt werden:
     // Hierbei werden Punkte in der State-ID durch Slashes ersetzt.
     // Beispiel: "iobroker/mqtt-discovery/0/my_device"
-    const baseTopic = `iobroker/${stateId.replace(/\./g, "/")}`;
+    let stateTopicConfig = adapter.config.stateTopic;
+    while (stateTopicConfig && stateTopicConfig.endsWith("/")) {
+        stateTopicConfig = stateTopicConfig.substring(0, stateTopicConfig.length - 1);
+    }
+    const baseTopic = `${stateTopicConfig}/${stateId.replace(/\./g, "/")}`;
 
     // Grundlegender Payload, der in jedem Fall gesetzt wird:
     let payload: DiscoveryMessagePayload = {

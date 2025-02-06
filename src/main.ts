@@ -204,7 +204,7 @@ class MqttDiscovery extends utils.Adapter {
             if (!state) {
                 continue;
             }
-            const { haComponent, message: discovery } = generateDiscoveryMessage(stateId, state);
+            const { haComponent, message: discovery } = generateDiscoveryMessage(stateId, state, this);
             const success = await this.mqttPublish(discovery.topic, JSON.stringify(discovery.payload), {
                 retain: true,
             });

@@ -142,7 +142,9 @@
     "mqttUsername": "",
     "mqttPassword": "",
     "mqttClientId": "ioBroker-mqtt-discovery",
-    "mqttInstance": ""
+    "mqttInstance": "",
+    "discoveryTopic": "homeassistent",
+    "stateTopic": "iobroker"
   },
   "objects": [],
   "instanceObjects": [
