@@ -65,19 +65,19 @@ export function generateDiscoveryMessage(
     // Das Discovery-Topic gemäß HA-Schema:
     // Beispiel: "homeassistant/switch/mqtt-discovery_0_my_device/config"
     let discoveryTopicConfig = adapter.config.discoveryTopic;
-    while (discoveryTopicConfig && discoveryTopicConfig.endsWith("/")) {
-        discoveryTopicConfig = discoveryTopicConfig.substring(0, discoveryTopicConfig.length - 1);
+    if (discoveryTopicConfig && !discoveryTopicConfig.endsWith("/")) {
+        discoveryTopicConfig = `${discoveryTopicConfig}/`;
     }
-    const discoveryTopic = `${discoveryTopicConfig}/${haComponent}/${objectId}/config`;
+    const discoveryTopic = `${discoveryTopicConfig}${haComponent}/${objectId}/config`;
 
     // Erzeuge den Basis-MQTT-Topic, in dem die State-Informationen abgelegt werden:
     // Hierbei werden Punkte in der State-ID durch Slashes ersetzt.
     // Beispiel: "iobroker/mqtt-discovery/0/my_device"
     let stateTopicConfig = adapter.config.stateTopic;
-    while (stateTopicConfig && stateTopicConfig.endsWith("/")) {
-        stateTopicConfig = stateTopicConfig.substring(0, stateTopicConfig.length - 1);
+    if (stateTopicConfig && !stateTopicConfig.endsWith("/")) {
+        stateTopicConfig = `${discoveryTopicConfig}/`;
     }
-    const baseTopic = `${stateTopicConfig}/${stateId.replace(/\./g, "/")}`;
+    const baseTopic = `${stateTopicConfig}${stateId.replace(/\./g, "/")}`;
 
     // Grundlegender Payload, der in jedem Fall gesetzt wird:
     let payload: DiscoveryMessagePayload = {

@@ -41,15 +41,15 @@ function generateDiscoveryMessage(stateId, state, adapter) {
   const haComponent = mapStateToHAComponent(state);
   const objectId = stateId.replace(/\./g, "_");
   let discoveryTopicConfig = adapter.config.discoveryTopic;
-  while (discoveryTopicConfig && discoveryTopicConfig.endsWith("/")) {
-    discoveryTopicConfig = discoveryTopicConfig.substring(0, discoveryTopicConfig.length - 1);
+  if (discoveryTopicConfig && !discoveryTopicConfig.endsWith("/")) {
+    discoveryTopicConfig = `${discoveryTopicConfig}/`;
   }
-  const discoveryTopic = `${discoveryTopicConfig}/${haComponent}/${objectId}/config`;
+  const discoveryTopic = `${discoveryTopicConfig}${haComponent}/${objectId}/config`;
   let stateTopicConfig = adapter.config.stateTopic;
-  while (stateTopicConfig && stateTopicConfig.endsWith("/")) {
-    stateTopicConfig = stateTopicConfig.substring(0, stateTopicConfig.length - 1);
+  if (stateTopicConfig && !stateTopicConfig.endsWith("/")) {
+    stateTopicConfig = `${discoveryTopicConfig}/`;
   }
-  const baseTopic = `${stateTopicConfig}/${stateId.replace(/\./g, "/")}`;
+  const baseTopic = `${stateTopicConfig}${stateId.replace(/\./g, "/")}`;
   let payload = {
     name: objectId,
     state_topic: `${baseTopic}/state`,
