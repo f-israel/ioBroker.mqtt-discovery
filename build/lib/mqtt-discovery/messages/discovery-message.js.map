@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../src/lib/mqtt-discovery/messages/discovery-message.ts"],
-  "sourcesContent": ["import type { DiscoveryMessagePayload } from \"./discovery-message-payload\";\n\n/**\n * Grobe Struktur einer Discovery message\n */\nexport interface DiscoveryMessage {\n    /**\n     * MQTT Discovery Topic, z.B. \"homeassistant/sensor/my_device_config/config\"\n     */\n    topic: string; // MQTT Discovery Topic, z.B. \"homeassistant/sensor/my_device_config/config\"\n    /**\n     * JSON-Payload, die die Konfiguration enth\u00E4lt\n     */\n    payload: DiscoveryMessagePayload; // JSON-Payload, die die Konfiguration enth\u00E4lt\n}\n"],
-  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;",
-  "names": []
-}

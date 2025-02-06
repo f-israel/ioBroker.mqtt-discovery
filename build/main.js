@@ -25,7 +25,7 @@ var utils = __toESM(require("@iobroker/adapter-core"));
 var import_adapter_core = require("@iobroker/adapter-core");
 var mqtt = __toESM(require("mqtt"));
 var import_state_finder = require("./lib/state-finder");
-var import_mqtt_discovery_helper = require("./lib/mqtt-discovery/mqtt-discovery-helper");
+var import_mqtt_discovery_helper = require("./lib/mqtt-discovery-helper");
 var import_node_timers = require("node:timers");
 class MqttDiscovery extends utils.Adapter {
   // MQTT-Client speichern – initial null
