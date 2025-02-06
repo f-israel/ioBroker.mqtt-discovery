@@ -19,7 +19,7 @@
     "url": "https://github.com/fisrael/ioBroker.mqtt-discovery.git"
   },
   "engines": {
-    "node": ">= 20"
+    "node": ">=20"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.2.3",
