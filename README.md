@@ -20,7 +20,42 @@ Adapter, der MQTT Discovery Nachrichten für Home Assistant generiert
 > This project is in active development—imagine a mad scientist’s lab where experiments are a daily routine. Expect quirky behavior, unexpected bugs, and plenty of caffeine-fueled code as I learn the ropes. Every bug report and suggestion earns a virtual high-five!
 > Happy hacking and enjoy the chaos!
 
+## Install
+### Connectivity
+It is not recommended to use an existing MQTT instance.
+The adapter creates an additional state for each state, which holds the discovery configuration.
+Instead, a separate MQTT instance should be created with the following settings.
+Of course, the basic settings (IP address, port, authentication) can be adjusted and just need to match in this adapters' configuration.
+
+![Connection settings](doc/Page1_Connection.png)
+![Server settings](doc/Page2_Server_Settings.png)
+![MQTT settings](doc/Page3_MQTT_Settings.png)
+
+Alternatively, any other MQTT broker should also be usable, such as the Home Assistant add-on (unconfirmed!).
+
+### Usage
+To enable Home Assistant Discovery, follow these steps:
+
+1. **Create a Function in ioBroker:**
+    - A function named `homeassistant_enabled` must be created in ioBroker (**IOB Admin → Enums → Functions**).
+
+2. **Assign Devices to the Function:**
+    - Any object that should be discovered by Home Assistant must be assigned to this function.
+    - If an object is a container (e.g., **channel, meta, folder, group**), the adapter will scan recursively.
+
+3. **Trigger Discovery Update:**
+    - The adapter detects new objects when either:
+        - The **State Rescan Interval** is reached, or
+        - The adapter is restarted.
+
+4. **(Only when using the ioBroker MQTT Broker) Clean up:**
+    - Delete all unused discovery config holder states (**Objects → mqtt.0/{discovery topic}**) that are no longer needed.
+    - Alternatively, delete all discovery config states before restarting the adapter.
+
 ## Changelog
+### ***WORK IN PROGRESS***
+- first version with values in HA
+- added simple documentation
 
 ### 0.0.3-alpha.3 (2025-02-06)
 - version push for npm package

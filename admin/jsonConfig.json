@@ -2,67 +2,119 @@
   "i18n": true,
   "type": "panel",
   "items": {
-
-  "stateRescanInterval": {
-    "type": "number",
-    "label": "State-Rescan Interval",
-    "help": "Interval in dem die States neu gescannt werden",
-    "default": 300
-  },
-  "mqttInstance": {
-    "type": "instance",
-    "adapter": "mqtt",
-    "label": "Verwende vorhandene MQTT-Instanz",
-    "help": "Wähle eine vorhandene MQTT-Instanz aus, falls du nicht direkt verbinden möchtest",
-    "default": ""
-  },
-    "mqttProtocol": {
-      "type": "text",
-      "label": "MQTT Protokoll",
-      "default": "mqtt",
-      "help": "Protokoll, z.B. mqtt oder mqtts"
+    "headerGeneral": {
+      "type": "header",
+      "size": 3,
+      "text": "Allgemeine Einstellungen"
     },
-    "mqttHost": {
-      "type": "text",
-      "label": "MQTT Host",
-      "default": "localhost",
-      "help": "Hostname oder IP-Adresse des MQTT Brokers"
-    },
-    "mqttPort": {
+    "stateRescanInterval": {
       "type": "number",
-      "label": "MQTT Port",
-      "default": 1883,
-      "help": "Port des MQTT Brokers"
+      "label": "State-Rescan Intervall",
+      "help": "Intervall in dem die States neu gescannt werden",
+      "default": 300
     },
-    "mqttUsername": {
-      "type": "text",
-      "label": "MQTT Benutzer",
-      "default": "",
-      "help": "Benutzername für den MQTT Broker (optional)"
+
+    "headerMqtt": {
+      "type": "header",
+      "size": 3,
+      "text": "MQTT Einstellungen"
     },
-    "mqttPassword": {
-      "type": "password",
-      "label": "MQTT Passwort",
-      "default": "",
-      "help": "Passwort für den MQTT Broker (optional)"
+    "mqttUseInstance": {
+      "type": "checkbox",
+      "label": "Vorhandene MQTT-Instanz nutzen",
+      "default": false,
+      "doNotSave": true
     },
-    "mqttClientId": {
-      "type": "text",
-      "label": "MQTT Client ID",
-      "default": "ioBroker-mqtt-discovery",
-      "help": "Client-ID für die Verbindung zum MQTT Broker"
+
+    "mqttInstanceSettings": {
+      "type": "panel",
+      "label": "MQTT-Instanz",
+      "items": {
+        "mqttInstance": {
+          "type": "instance",
+          "adapter": "mqtt",
+          "label": "Verwende vorhandene MQTT-Instanz",
+          "help": "Wähle eine vorhandene MQTT-Instanz aus, falls du nicht direkt verbinden möchtest",
+          "default": ""
+        }
+      },
+      "hidden": "!data.mqttUseInstance"
     },
-    "discoveryTopic": {
-      "type": "text",
-      "label": "Discovery-Topic",
-      "default": "homeassistant",
-      "help": "Topic-Prefix in dem die Discovery-Messages published werden (muss im HA entsprechend eingestellt werden)"
+
+    "mqttManualSettings": {
+      "type": "panel",
+      "label": "Manuelle MQTT-Verbindung",
+      "items": {
+        "mqttProtocol": {
+          "type": "select",
+          "label": "MQTT Protokoll",
+          "options": [
+            { "value": "mqtt", "label": "MQTT" },
+            { "value": "mqtts", "label": "MQTTS (verschlüsselt)" },
+            { "value": "ws", "label": "WebSocket" },
+            { "value": "wss", "label": "WebSocket (verschlüsselt)" }
+          ],
+          "default": "mqtt",
+          "help": "Protokoll auswählen"
+        },
+        "mqttHost": {
+          "type": "text",
+          "label": "MQTT Host",
+          "default": "localhost",
+          "help": "Hostname oder IP-Adresse des MQTT Brokers"
+        },
+        "mqttPort": {
+          "type": "number",
+          "label": "MQTT Port",
+          "default": 1883,
+          "help": "Port des MQTT Brokers"
+        },
+        "mqttUsername": {
+          "type": "text",
+          "label": "MQTT Benutzer",
+          "default": "",
+          "help": "Benutzername für den MQTT Broker (optional)"
+        },
+        "mqttPassword": {
+          "type": "password",
+          "label": "MQTT Passwort",
+          "default": "",
+          "help": "Passwort für den MQTT Broker (optional)"
+        },
+        "mqttClientId": {
+          "type": "text",
+          "label": "MQTT Client ID",
+          "default": "ioBroker-mqtt-discovery",
+          "help": "Client-ID für die Verbindung zum MQTT Broker"
+        }
+      },
+      "hidden": "data.mqttUseInstance"
     },
-    "stateTopic": {
-      "type": "text",
-      "label": "State-Topic",
-      "default": "iobroker",
-      "help": "Topic-Prefix in dem die States liegen (entspricht mqtt.* -> Einstellungen -> Prefix für alle Topics)"
+
+    "headerTopics": {
+      "type": "header",
+      "size": 3,
+      "text": "MQTT Topics"
+    },
+    "topics": {
+      "type": "panel",
+      "label": "MQTT Topics",
+      "items": {
+        "discoveryTopic": {
+          "type": "text",
+          "label": "Discovery-Topic",
+          "default": "homeassistant",
+          "addColon": true,
+          "validator": true,
+          "help": "Topic-Prefix in dem die Discovery-Messages published werden (muss im HA entsprechend eingestellt werden)"
+        },
+        "stateTopic": {
+          "type": "text",
+          "label": "State-Topic",
+          "default": "iobroker",
+          "help": "Topic-Prefix in dem die States liegen (entspricht mqtt.* -> Einstellungen -> Prefix für alle Topics)"
+        }
+      }
     }
   }
 }
