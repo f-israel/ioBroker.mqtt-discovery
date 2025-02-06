@@ -4,6 +4,7 @@
 declare global {
     namespace ioBroker {
         interface AdapterConfig {
+            stateRescanInterval: number;
             mqttHost: string;
             mqttPort: number;
             mqttUsername: string;

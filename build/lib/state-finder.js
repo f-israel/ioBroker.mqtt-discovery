@@ -23,10 +23,11 @@ __export(state_finder_exports, {
 module.exports = __toCommonJS(state_finder_exports);
 async function findStatesMarkedWithEnum(adapter, enumId) {
   var _a;
-  const resolveToStateIds = async (objId) => {
-    const obj = await adapter.getForeignObjectAsync(objId);
-    if (!obj)
+  const resolveToStateIds = async (adapter2, objId) => {
+    const obj = await adapter2.getForeignObjectAsync(objId);
+    if (!obj) {
       return [];
+    }
     switch (obj.type) {
       case "state":
         return [obj._id];
@@ -46,21 +47,22 @@ async function findStatesMarkedWithEnum(adapter, enumId) {
       case "schedule":
       case "config":
       case "design":
-        adapter.log.warn(`Found object of type '${obj.type}' which is not supported`);
+        adapter2.log.warn(`Found object of type '${obj.type}' which is not supported`);
         return [];
     }
-    adapter.log.debug(`Found object '${obj._id}' of type '${obj.type}' - searching for members`);
+    adapter2.log.debug(`Found object '${obj._id}' of type '${obj.type}' - searching for members`);
     const distinctList = [];
-    for (const stateId in await adapter.getForeignStatesAsync(`${obj._id}.*`)) {
-      if (!distinctList.includes(stateId))
+    for (const stateId in await adapter2.getForeignStatesAsync(`${obj._id}.*`)) {
+      if (!distinctList.includes(stateId)) {
         distinctList.push(stateId);
+      }
     }
     return distinctList;
   };
   const enumObj = await adapter.getForeignObjectAsync(`enum.functions.${enumId}`);
   let stateIds = [];
   for (const member of (_a = enumObj == null ? void 0 : enumObj.common.members) != null ? _a : []) {
-    stateIds = [...stateIds, ...await resolveToStateIds(member)];
+    stateIds = [...stateIds, ...await resolveToStateIds(adapter, member)];
   }
   return stateIds;
 }

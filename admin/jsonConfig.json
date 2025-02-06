@@ -2,11 +2,25 @@
   "i18n": true,
   "type": "panel",
   "items": {
+
+  "stateRescanInterval": {
+    "type": "number",
+    "label": "State-Rescan Interval",
+    "help": "Interval in dem die States neu gescannt werden",
+    "default": 300
+  },
+  "mqttInstance": {
+    "type": "instance",
+    "adapter": "mqtt",
+    "label": "Verwende vorhandene MQTT-Instanz",
+    "help": "Wähle eine vorhandene MQTT-Instanz aus, falls du nicht direkt verbinden möchtest",
+    "default": ""
+  },
     "mqttProtocol": {
       "type": "text",
       "label": "MQTT Protokoll",
       "default": "mqtt",
-      "help": "Protokoll, z. B. mqtt oder mqtts"
+      "help": "Protokoll, z.B. mqtt oder mqtts"
     },
     "mqttHost": {
       "type": "text",
@@ -37,13 +51,6 @@
       "label": "MQTT Client ID",
       "default": "ioBroker-mqtt-discovery",
       "help": "Client-ID für die Verbindung zum MQTT Broker"
-    },
-    "mqttInstance": {
-      "type": "instance",
-      "adapter": "mqtt",
-      "label": "Verwende vorhandene MQTT-Instanz",
-      "help": "Wähle eine vorhandene MQTT-Instanz aus, falls du nicht direkt verbinden möchtest",
-      "default": ""
     }
   }
 }

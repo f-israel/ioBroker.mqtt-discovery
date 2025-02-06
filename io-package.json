@@ -99,6 +99,7 @@
     "mqttProtocol": "mqtt",
     "mqttHost": "localhost",
     "mqttPort": 1883,
+    "stateRescanInterval": 300,
     "mqttUsername": "",
     "mqttPassword": "",
     "mqttClientId": "ioBroker-mqtt-discovery",

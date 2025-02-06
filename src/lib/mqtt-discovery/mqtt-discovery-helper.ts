@@ -1,9 +1,7 @@
-// Definiere ein Interface für die Discovery-Nachricht
-export interface DiscoveryMessage {
-    topic: string; // MQTT Discovery Topic, z.B. "homeassistant/sensor/my_device_config/config"
-    payload: any; // JSON-Payload, die die Konfiguration enthält
-}
+import type { DiscoveryMessage } from "./messages/discovery-message";
+import type { DiscoveryMessagePayload } from "./messages/discovery-message-payload";
 
+export type HomeassistantComponent = "sensor" | "switch" | "binary_sensor";
 /**
  * Ermittelt anhand des ioBroker-States die passende Home Assistant Komponente.
  * Dabei wird insbesondere der Typ (state.common.type) und optional die Rolle (state.common.role)
@@ -14,7 +12,7 @@ export interface DiscoveryMessage {
  * @param state Der ioBroker-State, dessen common-Informationen zur Klassifikation herangezogen werden.
  * @returns Den HA-Komponenten-Typ als string (z.B. "sensor", "switch" oder "binary_sensor")
  */
-export function mapStateToHAComponent(state: ioBroker.Object): string {
+export function mapStateToHAComponent(state: ioBroker.Object): HomeassistantComponent {
     const type = state.common?.type;
     const role = (state.common?.role || "").toLowerCase();
 
@@ -49,7 +47,13 @@ export function mapStateToHAComponent(state: ioBroker.Object): string {
  * @param state Das zugehörige State-Objekt, das auch Informationen wie den Typ und die Rolle enthält.
  * @returns Ein Objekt mit dem Discovery-Topic und dem Payload, der per MQTT versendet werden kann.
  */
-export function generateDiscoveryMessage(stateId: string, state: ioBroker.Object): DiscoveryMessage {
+export function generateDiscoveryMessage(
+    stateId: string,
+    state: ioBroker.Object,
+): {
+    message: DiscoveryMessage;
+    haComponent: HomeassistantComponent;
+} {
     // Ermitteln des HA-Komponenten-Typs anhand des State-Typs und ggf. der Rolle.
     const haComponent = mapStateToHAComponent(state);
 
@@ -67,7 +71,7 @@ export function generateDiscoveryMessage(stateId: string, state: ioBroker.Object
     const baseTopic = `iobroker/${stateId.replace(/\./g, "/")}`;
 
     // Grundlegender Payload, der in jedem Fall gesetzt wird:
-    const payload: any = {
+    let payload: DiscoveryMessagePayload = {
         name: objectId,
         state_topic: `${baseTopic}/state`,
         unique_id: `mqtt_discovery_${objectId}`,
@@ -76,14 +80,20 @@ export function generateDiscoveryMessage(stateId: string, state: ioBroker.Object
     // Abhängig von der HA-Komponente fügen wir weitere Felder hinzu:
     if (haComponent === "switch") {
         // Für Schalter: Definiere zusätzlich den command_topic und die Payloads für ON/OFF.
-        payload.command_topic = `${baseTopic}/set`;
-        payload.payload_on = "ON";
-        payload.payload_off = "OFF";
+        payload = {
+            ...payload,
+            command_topic: `${baseTopic}/set`,
+            payload_on: "ON",
+            payload_off: "OFF",
+        };
     } else if (haComponent === "binary_sensor") {
         // Binary Sensoren sind in der Regel read-only.
         // Hier definieren wir aber dennoch, welche Payloads als ON/OFF gelten.
-        payload.payload_on = "ON";
-        payload.payload_off = "OFF";
+        payload = {
+            ...payload,
+            payload_on: "ON",
+            payload_off: "OFF",
+        };
     } else if (haComponent === "sensor") {
         // Für Sensoren können weitere Felder wie die Einheit gesetzt werden,
         // sofern diese im State hinterlegt sind.
@@ -102,7 +112,10 @@ export function generateDiscoveryMessage(stateId: string, state: ioBroker.Object
     }
 
     return {
-        topic: discoveryTopic,
-        payload: payload,
+        haComponent: haComponent,
+        message: {
+            topic: discoveryTopic,
+            payload: payload,
+        },
     };
 }

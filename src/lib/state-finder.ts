@@ -1,10 +1,17 @@
+/**
+ *
+ * @param adapter base adapter
+ * @param enumId id of enum to use as marker - without the 'enum.functions.' prefix
+ */
 export async function findStatesMarkedWithEnum(adapter: ioBroker.Adapter, enumId: string): Promise<string[]> {
-    const resolveToStateIds = async (objId: string): Promise<string[]> => {
+    const resolveToStateIds = async (adapter: ioBroker.Adapter, objId: string): Promise<string[]> => {
         const obj = await adapter.getForeignObjectAsync(objId);
-        if (!obj) return [];
+        if (!obj) {
+            return [];
+        }
 
         switch (obj.type) {
-            case "state":
+            case "state": //it's a final state - just return
                 return [obj._id];
             case "channel":
             case "device":
@@ -13,6 +20,7 @@ export async function findStatesMarkedWithEnum(adapter: ioBroker.Adapter, enumId
             case "adapter":
             case "instance":
             case "group":
+                //just let through - this is handled below
                 break;
             case "enum":
             case "host":
@@ -32,14 +40,17 @@ export async function findStatesMarkedWithEnum(adapter: ioBroker.Adapter, enumId
 
         const distinctList: string[] = [];
         for (const stateId in await adapter.getForeignStatesAsync(`${obj._id}.*`)) {
-            if (!distinctList.includes(stateId)) distinctList.push(stateId);
+            if (!distinctList.includes(stateId)) {
+                distinctList.push(stateId);
+            }
         }
         return distinctList;
     };
+
     const enumObj = await adapter.getForeignObjectAsync(`enum.functions.${enumId}`);
     let stateIds: string[] = [];
     for (const member of enumObj?.common.members ?? []) {
-        stateIds = [...stateIds, ...(await resolveToStateIds(member))];
+        stateIds = [...stateIds, ...(await resolveToStateIds(adapter, member))];
     }
     return stateIds;
 }
