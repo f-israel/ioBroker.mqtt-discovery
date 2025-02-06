@@ -58,7 +58,7 @@ function generateDiscoveryMessage(stateId, state, adapter) {
   if (haComponent === "switch") {
     payload = {
       ...payload,
-      command_topic: `${baseTopic}/set`,
+      command_topic: `${baseTopic}`,
       payload_on: "ON",
       payload_off: "OFF"
     };
