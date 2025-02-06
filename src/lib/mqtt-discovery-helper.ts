@@ -82,7 +82,7 @@ export function generateDiscoveryMessage(
     // Grundlegender Payload, der in jedem Fall gesetzt wird:
     let payload: DiscoveryMessagePayload = {
         name: objectId,
-        state_topic: `${baseTopic}/state`,
+        state_topic: `${baseTopic}`,
         unique_id: `mqtt_discovery_${objectId}`,
     };
 

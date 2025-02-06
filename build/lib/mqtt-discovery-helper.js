@@ -52,7 +52,7 @@ function generateDiscoveryMessage(stateId, state, adapter) {
   const baseTopic = `${stateTopicConfig}${stateId.replace(/\./g, "/")}`;
   let payload = {
     name: objectId,
-    state_topic: `${baseTopic}/state`,
+    state_topic: `${baseTopic}`,
     unique_id: `mqtt_discovery_${objectId}`
   };
   if (haComponent === "switch") {
