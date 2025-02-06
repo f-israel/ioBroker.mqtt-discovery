@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "mqtt-discovery",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "news": {
+      "0.1.0": {
+        "en": "just version bumping",
+        "de": "nur version stoßen",
+        "ru": "просто версия шишка",
+        "pt": "apenas versão batendo",
+        "nl": "gewoon versie hobbelen",
+        "fr": "c'est juste la version qui bat",
+        "it": "solo versione urto",
+        "es": "sólo versión chocando",
+        "pl": "tylko wersja bumping",
+        "uk": "просто версія bumping",
+        "zh-cn": "刚刚的版本碰撞"
+      },
       "0.0.3": {
         "en": "first version with values in HA\nadded simple documentation",
         "de": "erste Version mit Werten in HA\neinfache dokumentation",
