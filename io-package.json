@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "mqtt-discovery",
-    "version": "0.0.3-alpha.3",
+    "version": "0.0.3",
     "news": {
+      "0.0.3": {
+        "en": "first version with values in HA\nadded simple documentation",
+        "de": "erste Version mit Werten in HA\neinfache dokumentation",
+        "ru": "первая версия с значениями в HA\nдобавленная простая документация",
+        "pt": "primeira versão com valores em HA\ndocumentação simples adicionada",
+        "nl": "eerste versie met waarden in HA\neenvoudige documentatie toevoegen",
+        "fr": "première version avec valeurs en HA\na ajouté une documentation simple",
+        "it": "prima versione con valori in HA\naggiunta semplice documentazione",
+        "es": "primera versión con valores en HA\ndocumentación simple",
+        "pl": "pierwsza wersja z wartościami w HA\ndodana prosta dokumentacja",
+        "uk": "перша версія з значеннями в HA\nдодано просту документацію",
+        "zh-cn": "以 HA 为值的第一个版本\n添加简单的文档"
+      },
       "0.0.3-alpha.3": {
         "en": "version push for npm package",
         "de": "version push für npm paket",

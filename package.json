@@ -1,6 +1,6 @@
 {
   "name": "iobroker.mqtt-discovery",
-  "version": "0.0.3-alpha.3",
+  "version": "0.0.3",
   "description": "Adapter, der MQTT Discovery Nachrichten für Home Assistant generiert",
   "author": {
     "name": "Ferry Israel",
