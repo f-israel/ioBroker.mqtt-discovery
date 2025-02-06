@@ -211,7 +211,7 @@ class MqttDiscovery extends utils.Adapter {
             if (!success) {
                 this.log.error(`Fehler beim Senden der Discovery-Nachricht`);
             } else {
-                this.log.debug(`Discovery-Nachricht für "${stateId}" gesendet.`);
+                this.log.debug(`Discovery-Nachricht für "${stateId}" als "${discovery.topic}" gesendet.`);
                 await this.incrementComponentCounterState(haComponent);
             }
         }
