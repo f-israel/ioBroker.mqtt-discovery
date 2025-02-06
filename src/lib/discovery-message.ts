@@ -1,4 +1,17 @@
 /**
+ * Grobe Struktur einer Discovery message
+ */
+export interface DiscoveryMessage {
+    /**
+     * MQTT Discovery Topic, z.B. "homeassistant/sensor/my_device_config/config"
+     */
+    topic: string; // MQTT Discovery Topic, z.B. "homeassistant/sensor/my_device_config/config"
+    /**
+     * JSON-Payload, die die Konfiguration enthält
+     */
+    payload: DiscoveryMessagePayload; // JSON-Payload, die die Konfiguration enthält
+}
+/**
  * @see https://www.home-assistant.io/integrations/mqtt/#discovery-payload
  */
 

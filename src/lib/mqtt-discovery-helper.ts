@@ -1,5 +1,4 @@
-import type { DiscoveryMessage } from "./messages/discovery-message";
-import type { DiscoveryMessagePayload } from "./messages/discovery-message-payload";
+import type { DiscoveryMessage, DiscoveryMessagePayload } from "./discovery-message";
 
 export type HomeassistantComponent = "sensor" | "switch" | "binary_sensor";
 /**

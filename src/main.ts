@@ -8,7 +8,7 @@ import * as utils from "@iobroker/adapter-core";
 import { EXIT_CODES } from "@iobroker/adapter-core";
 import * as mqtt from "mqtt";
 import { findStatesMarkedWithEnum } from "./lib/state-finder";
-import { generateDiscoveryMessage, type HomeassistantComponent } from "./lib/mqtt-discovery/mqtt-discovery-helper";
+import { generateDiscoveryMessage, type HomeassistantComponent } from "./lib/mqtt-discovery-helper";
 import { clearInterval } from "node:timers";
 // Load your modules here, e.g.:
 // import * as fs from "fs";
