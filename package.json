@@ -6,7 +6,7 @@
     "name": "Ferry Israel",
     "email": "israel@fi-lan.net"
   },
-  "homepage": "https://github.com/fisrael/ioBroker.mqtt-discovery",
+  "homepage": "https://github.com/f-israel/ioBroker.mqtt-discovery",
   "license": "MIT",
   "keywords": [
     "iobroker",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/fisrael/ioBroker.mqtt-discovery.git"
+    "url": "https://github.com/f-israel/ioBroker.mqtt-discovery.git"
   },
   "engines": {
     "node": ">=20"
@@ -83,7 +83,7 @@
     "release": "release-script"
   },
   "bugs": {
-    "url": "https://github.com/fisrael/ioBroker.mqtt-discovery/issues"
+    "url": "https://github.com/f-israel/ioBroker.mqtt-discovery/issues"
   },
   "readmeFilename": "README.md"
 }

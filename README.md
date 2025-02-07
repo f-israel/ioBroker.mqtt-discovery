@@ -9,7 +9,7 @@
 
 [![NPM](https://nodei.co/npm/iobroker.mqtt-discovery.png?downloads=true)](https://nodei.co/npm/iobroker.mqtt-discovery/)
 
-**Tests:** ![Test and Release](https://github.com/fisrael/ioBroker.mqtt-discovery/workflows/Test%20and%20Release/badge.svg)
+**Tests:** ![Test and Release](https://github.com/f-israel/ioBroker.mqtt-discovery/workflows/Test%20and%20Release/badge.svg)
 
 ## mqtt-discovery adapter for ioBroker
 
