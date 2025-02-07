@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "mqtt-discovery",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "news": {
+      "0.1.1": {
+        "en": "fixing switch types (ON/OFF -> true/false)\noptimized some MQTT settings for better compatibility",
+        "de": "befestigungsschaltertypen (ON/OFF -> true/false)\noptimiert einige MQTT-Einstellungen für bessere Kompatibilität",
+        "ru": "фиксирующие типы переключателей (ON/OFF -> True/false)\nоптимизированы некоторые настройки MQTT для лучшей совместимости",
+        "pt": "tipos de interruptor de fixação (ON/OFF -> true/false)\notimizado algumas configurações MQTT para melhor compatibilidade",
+        "nl": "fixing switch types (ON/OFF -> true/false)\ngeoptimaliseerde MQTT instellingen voor betere compatibiliteit",
+        "fr": "type de commutateur de fixation (ON/OFF -> true/false)\noptimisé certains paramètres MQTT pour une meilleure compatibilité",
+        "it": "tipi di interruttore di fissaggio (ON/OFF -> true/false)\nottimizzate alcune impostazioni MQTT per una migliore compatibilità",
+        "es": "tipos de interruptor de fijación (ON/OFF - título verdadero/false)\noptimizado algunos ajustes MQTT para una mejor compatibilidad",
+        "pl": "typ przełącznika mocującego (włączony / wyłączony - > true / false)\nzoptymalizowane ustawienia MQTT dla lepszej kompatybilności",
+        "uk": "типи вимикачів (ON/OFF -> true/false)\nоптимізовані параметри MQTT для кращої сумісності",
+        "zh-cn": "固定开关类型(ON/OFF - > 真/假)\n为了更好的兼容性,优化了一些 MQTT 设置"
+      },
       "0.1.0": {
         "en": "just version bumping",
         "de": "nur version stoßen",
@@ -80,19 +93,6 @@
         "pl": "Więcej rzeczy do zautomatyzowanego wdrożenia",
         "uk": "Детальніше про автоматизоване розгортання",
         "zh-cn": "更多自动部署的东西"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "uk": "Початкова версія",
-        "zh-cn": "首次出版"
       }
     },
     "titleLang": {
