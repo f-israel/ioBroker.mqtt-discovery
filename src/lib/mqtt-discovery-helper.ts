@@ -1,6 +1,6 @@
 import type { DiscoveryMessage, DiscoveryMessagePayload } from "./discovery-message";
 
-export type HomeassistantComponent = "sensor" | "switch" | "binary_sensor";
+export type HomeassistantComponent = "sensor" | "switch" | "binary_sensor" | "select";
 /**
  * Ermittelt anhand des ioBroker-States die passende Home Assistant Komponente.
  * Dabei wird insbesondere der Typ (state.common.type) und optional die Rolle (state.common.role)
@@ -14,7 +14,6 @@ export type HomeassistantComponent = "sensor" | "switch" | "binary_sensor";
 export function mapStateToHAComponent(state: ioBroker.Object): HomeassistantComponent {
     const type = state.common?.type;
     const role = (state.common?.role || "").toLowerCase();
-
     if (type === "boolean") {
         // Wenn in der Rolle beispielsweise "sensor" enthalten ist, könnte man auch
         // einen "binary_sensor" verwenden – hier als Beispiel:
@@ -24,6 +23,9 @@ export function mapStateToHAComponent(state: ioBroker.Object): HomeassistantComp
         // Standard: Bei Boolean als Schalter
         return "switch";
     } else if (type === "number" || type === "string") {
+        if (state.common?.states) {
+            return "select";
+        }
         return "sensor";
     }
     // Fallback: sensor
@@ -92,17 +94,21 @@ export function generateDiscoveryMessage(
         payload = {
             ...payload,
             command_topic: `${baseTopic}`,
-            payload_on: "ON",
-            payload_off: "OFF",
+            payload_on: "true",
+            payload_off: "false",
+            state_on: "true",
+            state_off: "false",
+            qos: 0,
+            retain: false,
         };
     } else if (haComponent === "binary_sensor") {
         // Binary Sensoren sind in der Regel read-only.
         // Hier definieren wir aber dennoch, welche Payloads als ON/OFF gelten.
-        payload = {
-            ...payload,
-            payload_on: "ON",
-            payload_off: "OFF",
-        };
+        // payload = {
+        //     ...payload,
+        //     payload_on: "true",
+        //     payload_off: "false",
+        // };
     } else if (haComponent === "sensor") {
         // Für Sensoren können weitere Felder wie die Einheit gesetzt werden,
         // sofern diese im State hinterlegt sind.
@@ -118,6 +124,14 @@ export function generateDiscoveryMessage(
         } else if (roleLower.includes("pressure")) {
             payload.device_class = "pressure";
         }
+    } else if (haComponent === "select") {
+        // Für Sensoren können weitere Felder wie die Einheit gesetzt werden,
+        // sofern diese im State hinterlegt sind.
+        payload = {
+            ...payload,
+            command_topic: `${baseTopic}`,
+            options: Object.keys(state.common?.states),
+        };
     }
 
     return {

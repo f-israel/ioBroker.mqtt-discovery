@@ -23,7 +23,7 @@ __export(mqtt_discovery_helper_exports, {
 });
 module.exports = __toCommonJS(mqtt_discovery_helper_exports);
 function mapStateToHAComponent(state) {
-  var _a, _b;
+  var _a, _b, _c;
   const type = (_a = state.common) == null ? void 0 : _a.type;
   const role = (((_b = state.common) == null ? void 0 : _b.role) || "").toLowerCase();
   if (type === "boolean") {
@@ -32,12 +32,15 @@ function mapStateToHAComponent(state) {
     }
     return "switch";
   } else if (type === "number" || type === "string") {
+    if ((_c = state.common) == null ? void 0 : _c.states) {
+      return "select";
+    }
     return "sensor";
   }
   return "sensor";
 }
 function generateDiscoveryMessage(stateId, state, adapter) {
-  var _a, _b;
+  var _a, _b, _c;
   const haComponent = mapStateToHAComponent(state);
   const objectId = stateId.replace(/\./g, "_");
   let discoveryTopicConfig = adapter.config.discoveryTopic;
@@ -59,15 +62,14 @@ function generateDiscoveryMessage(stateId, state, adapter) {
     payload = {
       ...payload,
       command_topic: `${baseTopic}`,
-      payload_on: "ON",
-      payload_off: "OFF"
+      payload_on: "true",
+      payload_off: "false",
+      state_on: "true",
+      state_off: "false",
+      qos: 0,
+      retain: false
     };
   } else if (haComponent === "binary_sensor") {
-    payload = {
-      ...payload,
-      payload_on: "ON",
-      payload_off: "OFF"
-    };
   } else if (haComponent === "sensor") {
     if ((_a = state.common) == null ? void 0 : _a.unit) {
       payload.unit_of_measurement = state.common.unit;
@@ -80,6 +82,12 @@ function generateDiscoveryMessage(stateId, state, adapter) {
     } else if (roleLower.includes("pressure")) {
       payload.device_class = "pressure";
     }
+  } else if (haComponent === "select") {
+    payload = {
+      ...payload,
+      command_topic: `${baseTopic}`,
+      options: Object.keys((_c = state.common) == null ? void 0 : _c.states)
+    };
   }
   return {
     haComponent,

@@ -19,12 +19,6 @@
       "size": 3,
       "text": "MQTT Einstellungen"
     },
-    "mqttUseInstance": {
-      "type": "checkbox",
-      "label": "Vorhandene MQTT-Instanz nutzen",
-      "default": false,
-      "doNotSave": true
-    },
 
     "mqttInstanceSettings": {
       "type": "panel",
@@ -37,8 +31,7 @@
           "help": "Wähle eine vorhandene MQTT-Instanz aus, falls du nicht direkt verbinden möchtest",
           "default": ""
         }
-      },
-      "hidden": "!data.mqttUseInstance"
+      }
     },
 
     "mqttManualSettings": {
@@ -88,7 +81,7 @@
           "help": "Client-ID für die Verbindung zum MQTT Broker"
         }
       },
-      "hidden": "data.mqttUseInstance"
+      "hidden": "data.mqttInstance"
     },
 
     "headerTopics": {

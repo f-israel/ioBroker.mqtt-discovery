@@ -110,9 +110,9 @@ export interface DiscoveryMessageSwitch extends DiscoveryMessageBase {
     /** MQTT-Topic für den aktuellen Status */
     state_topic?: string;
     /** Payload für den EIN-Status */
-    payload_on?: string;
+    payload_on?: string | boolean;
     /** Payload für den AUS-Status */
-    payload_off?: string;
+    payload_off?: string | boolean;
     /** Optimistischer Modus ohne Status-Feedback */
     optimistic?: boolean;
     /** Template zur Verarbeitung des Statuswerts */
@@ -124,9 +124,36 @@ export interface DiscoveryMessageSwitch extends DiscoveryMessageBase {
     /** Topic für zusätzliche JSON-Attribute */
     json_attributes_topic?: string;
 }
+/**
+ * @see https://www.home-assistant.io/integrations/switch.mqtt/#device
+ * MQTT Discovery-Payload für Schalter.
+ */
+export interface DiscoveryMessageSelect extends DiscoveryMessageBase {
+    /** MQTT-Topic für Befehle zum Schalten */
+    command_topic: string;
+    /** MQTT-Topic für den aktuellen Status */
+    state_topic?: string;
+    /** Payload für den EIN-Status */
+    payload_on?: string | boolean;
+    /** Payload für den AUS-Status */
+    payload_off?: string | boolean;
+    /** Optimistischer Modus ohne Status-Feedback */
+    optimistic?: boolean;
+    /** Template zur Verarbeitung des Statuswerts */
+    value_template?: string;
+    /** Wert, der den Status "EIN" darstellt */
+    state_on?: string;
+    /** Wert, der den Status "AUS" darstellt */
+    state_off?: string;
+    /** Topic für zusätzliche JSON-Attribute */
+    json_attributes_topic?: string;
+
+    /** (nur Select) mögliche Values */
+    options?: string[];
+}
 
 /**
  * @see https://www.home-assistant.io/integrations/mqtt/#discovery-payload
  * Union-Typ für alle unterstützten MQTT Discovery-Payloads.
  */
-export type DiscoveryMessagePayload = DiscoveryMessageSensor | DiscoveryMessageSwitch;
+export type DiscoveryMessagePayload = DiscoveryMessageSensor | DiscoveryMessageSwitch | DiscoveryMessageSelect;
