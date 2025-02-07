@@ -54,6 +54,9 @@ To enable Home Assistant Discovery, follow these steps:
     - Alternatively, delete all discovery config states before restarting the adapter.
 
 ## Changelog
+### **WORK IN PROGRESS**
+- (FI) fixed typo in GitHub links
+
 ### 0.1.1 (2025-02-07)
 - (FI) fixing switch types (ON/OFF -> true/false)
 - (FI) optimized some MQTT settings for better compatibility
