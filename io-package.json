@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "mqtt-discovery",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "news": {
+      "0.1.2": {
+        "en": "fixed typo in GitHub links",
+        "de": "fester Typus in GitHub Links",
+        "ru": "фиксированный типо в ссылках GitHub",
+        "pt": "tipo fixo em links GitHub",
+        "nl": "vaste typefout in GitHub links",
+        "fr": "typo fixe dans les liens GitHub",
+        "it": "typo fisso in GitHub collegamenti",
+        "es": "typo fijo en GitHub links",
+        "pl": "stałe typo w linkach GitHub",
+        "uk": "виправлено типо в GitHub посилання",
+        "zh-cn": "gitHub 链接中的固定类型"
+      },
       "0.1.1": {
         "en": "fixing switch types (ON/OFF -> true/false)\noptimized some MQTT settings for better compatibility",
         "de": "befestigungsschaltertypen (ON/OFF -> true/false)\noptimiert einige MQTT-Einstellungen für bessere Kompatibilität",
@@ -80,19 +93,6 @@
         "pl": "Wdrożenie szorstkiej logiki",
         "uk": "Реалізація грубої логіки",
         "zh-cn": "粗略逻辑"
-      },
-      "0.0.3-alpha.0": {
-        "en": "More things for automated deploy",
-        "de": "Mehr zum automatisierten Einsatz",
-        "ru": "Больше вещей для автоматического развертывания",
-        "pt": "Mais coisas para implantação automatizada",
-        "nl": "Meer dingen voor geautomatiseerde implementatie",
-        "fr": "Plus de choses pour le déploiement automatisé",
-        "it": "Altre cose per l'implementazione automatizzata",
-        "es": "Más cosas para el despliegue automatizado",
-        "pl": "Więcej rzeczy do zautomatyzowanego wdrożenia",
-        "uk": "Детальніше про автоматизоване розгортання",
-        "zh-cn": "更多自动部署的东西"
       }
     },
     "titleLang": {
