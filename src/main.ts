@@ -33,6 +33,7 @@ class MqttDiscovery extends utils.Adapter {
      * Wird aufgerufen, wenn der Adapter bereit ist.
      */
     private async onReady(): Promise<void> {
+        this.log.info(`1722`);
         if (!this.config.mqttInstance && !this.config.mqttHost) {
             this.stop && void this.stop({ reason: "Not configured", exitCode: EXIT_CODES.INVALID_ADAPTER_CONFIG });
         }
