@@ -93,7 +93,7 @@ export function generateDiscoveryMessage(
         // Für Schalter: Definiere zusätzlich den command_topic und die Payloads für ON/OFF.
         payload = {
             ...payload,
-            command_topic: `${baseTopic}/set`,
+            command_topic: `${baseTopic}`,
             payload_on: "true",
             payload_off: "false",
             state_on: "true",
@@ -129,7 +129,7 @@ export function generateDiscoveryMessage(
         // sofern diese im State hinterlegt sind.
         payload = {
             ...payload,
-            command_topic: `${baseTopic}/set`,
+            command_topic: `${baseTopic}`,
             options: Object.keys(state.common?.states),
         };
     }

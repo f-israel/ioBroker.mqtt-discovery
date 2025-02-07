@@ -61,7 +61,7 @@ function generateDiscoveryMessage(stateId, state, adapter) {
   if (haComponent === "switch") {
     payload = {
       ...payload,
-      command_topic: `${baseTopic}/set`,
+      command_topic: `${baseTopic}`,
       payload_on: "true",
       payload_off: "false",
       state_on: "true",
@@ -85,7 +85,7 @@ function generateDiscoveryMessage(stateId, state, adapter) {
   } else if (haComponent === "select") {
     payload = {
       ...payload,
-      command_topic: `${baseTopic}/set`,
+      command_topic: `${baseTopic}`,
       options: Object.keys((_c = state.common) == null ? void 0 : _c.states)
     };
   }
