@@ -23,16 +23,20 @@ __export(mqtt_discovery_helper_exports, {
 });
 module.exports = __toCommonJS(mqtt_discovery_helper_exports);
 function mapStateToHAComponent(state) {
-  var _a, _b, _c;
+  var _a, _b, _c, _d;
   const type = (_a = state.common) == null ? void 0 : _a.type;
   const role = (((_b = state.common) == null ? void 0 : _b.role) || "").toLowerCase();
+  const readonly = !((_c = state.common) == null ? void 0 : _c.write);
   if (type === "boolean") {
     if (role.includes("sensor")) {
       return "binary_sensor";
     }
+    if (role === "state" || role === "indicator" || readonly) {
+      return "sensor";
+    }
     return "switch";
   } else if (type === "number" || type === "string") {
-    if ((_c = state.common) == null ? void 0 : _c.states) {
+    if ((_d = state.common) == null ? void 0 : _d.states) {
       return "select";
     }
     return "sensor";

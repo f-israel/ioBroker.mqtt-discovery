@@ -14,13 +14,16 @@ export type HomeassistantComponent = "sensor" | "switch" | "binary_sensor" | "se
 export function mapStateToHAComponent(state: ioBroker.Object): HomeassistantComponent {
     const type = state.common?.type;
     const role = (state.common?.role || "").toLowerCase();
+    const readonly = !state.common?.write;
     if (type === "boolean") {
         // Wenn in der Rolle beispielsweise "sensor" enthalten ist, könnte man auch
         // einen "binary_sensor" verwenden – hier als Beispiel:
         if (role.includes("sensor")) {
             return "binary_sensor";
         }
-        // Standard: Bei Boolean als Schalter
+        if (role === "state" || role === "indicator" || readonly) {
+            return "sensor";
+        }
         return "switch";
     } else if (type === "number" || type === "string") {
         if (state.common?.states) {
