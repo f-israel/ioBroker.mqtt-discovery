@@ -25,7 +25,8 @@ Adapter, der MQTT Discovery Nachrichten für Home Assistant generiert
 It is not recommended to use an existing MQTT instance.
 The adapter creates an additional state for each state, which holds the discovery configuration.
 Instead, a separate MQTT instance should be created with the following settings.
-Of course, the basic settings (IP address, port, authentication) can be adjusted and just need to match in this adapters' configuration.
+Of course, the basic settings (IP address, port, authentication) can be adjusted and just need to match this adapters' configuration.
+Most important settings are marked.
 
 ![Connection settings](doc/Page1_Connection.png)
 ![Server settings](doc/Page2_Server_Settings.png)
@@ -55,7 +56,8 @@ To enable Home Assistant Discovery, follow these steps:
 ## Changelog
 ### **WORK IN PROGRESS**
 - (FI) fixing switch types (ON/OFF -> true/false)
-- 
+- (FI) optimized some MQTT settings for better compatibility
+
 ### 0.1.0 (2025-02-06)
 - (FI) just version bumping
 
